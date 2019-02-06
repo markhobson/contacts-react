@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir build --presets=@babel/preset-react",
-    "watch": "babel --watch src --out-dir build --presets=@babel/preset-react",
+    "build": "babel src --out-dir build",
+    "watch": "babel --watch src --out-dir build",
     "start": "live-server"
   },
   "author": "",
