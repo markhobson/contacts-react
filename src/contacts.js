@@ -2,12 +2,10 @@
 
 class Contacts extends React.Component {
 	render() {
-		return React.createElement(
-			'h1',
-			null,
-			'Contacts'
+		return (
+			<h1>Contacts</h1>
 		);
 	}
 }
 
-ReactDOM.render(React.createElement(Contacts), document.querySelector('#contacts'));
+ReactDOM.render(<Contacts/>, document.querySelector('#contacts'));

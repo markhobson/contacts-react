@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/standalone": "^7.3.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
