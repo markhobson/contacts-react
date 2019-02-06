@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "babel src --out-dir build --presets=@babel/preset-react",
+    "watch": "babel --watch src --out-dir build --presets=@babel/preset-react",
     "start": "live-server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/standalone": "^7.3.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
     "live-server": "^1.2.1"
   }
 }
