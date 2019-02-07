@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "watch": "babel --watch src --out-dir dist",
+    "build": "webpack",
+    "watch": "webpack --watch",
     "start": "live-server"
   },
   "author": "",
@@ -18,6 +18,9 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-react": "^7.0.0",
-    "live-server": "^1.2.1"
+    "babel-loader": "^8.0.5",
+    "live-server": "^1.2.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   }
 }
