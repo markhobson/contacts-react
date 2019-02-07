@@ -1,8 +1,7 @@
 import React from "react";
-import * as ReactDOM from "react-dom";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 
-class Contacts extends React.Component {
+class App extends React.Component {
 	render() {
 		return (
 			<AppBar>
@@ -16,4 +15,4 @@ class Contacts extends React.Component {
 	}
 }
 
-ReactDOM.render(<Contacts/>, document.querySelector('#contacts'));
+export default App;
