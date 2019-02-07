@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir build",
-    "watch": "babel --watch src --out-dir build",
+    "build": "babel src --out-dir dist",
+    "watch": "babel --watch src --out-dir dist",
     "start": "live-server"
   },
   "author": "",
