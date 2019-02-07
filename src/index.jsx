@@ -1,10 +1,17 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
+import {AppBar, Toolbar, Typography} from "@material-ui/core";
 
 class Contacts extends React.Component {
 	render() {
 		return (
-			<h1>Contacts</h1>
+			<AppBar>
+				<Toolbar>
+					<Typography variant="h6" color="inherit">
+						Contacts
+					</Typography>
+				</Toolbar>
+			</AppBar>
 		);
 	}
 }
