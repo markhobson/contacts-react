@@ -3,6 +3,10 @@ import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
 import ContactList from "./ContactList.jsx";
 
 function App() {
+	function yo(contact) {
+		console.log('yo ' + contact.name);
+	}
+	
 	return (
 		<React.Fragment>
 			<CssBaseline/>
@@ -14,7 +18,7 @@ function App() {
 				</Toolbar>
 			</AppBar>
 			<main>
-				<ContactList/>
+				<ContactList onSelect={yo}/>
 			</main>
 		</React.Fragment>
 	);
