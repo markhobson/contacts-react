@@ -1,5 +1,6 @@
 import React from "react";
-import {Avatar, List, ListItem, ListItemAvatar, ListItemText} from "@material-ui/core";
+import {List} from "@material-ui/core";
+import ContactListItem from "./ContactListItem.jsx";
 
 function ContactList() {
 	const contacts = [
@@ -9,12 +10,7 @@ function ContactList() {
 	];
 	
 	const listItems = contacts.map(contact =>
-		<ListItem>
-			<ListItemAvatar>
-				<Avatar src={contact.avatar}/>
-			</ListItemAvatar>
-			<ListItemText primary={contact.name}/>
-		</ListItem>
+		<ContactListItem contact={contact}/>
 	);
 	
 	return (
