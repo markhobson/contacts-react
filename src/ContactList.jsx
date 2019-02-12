@@ -1,6 +1,6 @@
 import React from "react";
 import {List} from "@material-ui/core";
-import ContactListItem from "./ContactListItem.jsx";
+import ContactListItem from "./ContactListItem";
 
 class ContactList extends React.Component {
 	

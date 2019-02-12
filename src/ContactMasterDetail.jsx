@@ -1,7 +1,7 @@
 import React from "react";
 import {Drawer, withStyles} from "@material-ui/core";
-import ContactForm from "./ContactForm.jsx";
-import ContactList from "./ContactList.jsx";
+import ContactForm from "./ContactForm";
+import ContactList from "./ContactList";
 
 const drawerWidth = 320;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import ContactMasterDetail from "./ContactMasterDetail.jsx";
+import ContactMasterDetail from "./ContactMasterDetail";
 
 class ContactMasterDetailContainer extends React.Component {
 	

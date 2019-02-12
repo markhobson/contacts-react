@@ -1,6 +1,6 @@
 import React from "react";
 import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
-import ContactMasterDetailContainer from "./ContactMasterDetailContainer.jsx";
+import ContactMasterDetailContainer from "./ContactMasterDetailContainer";
 
 function App() {
 	return (

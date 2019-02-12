@@ -14,6 +14,9 @@ module.exports = {
 			}
 		]
 	},
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
 	devServer: {
 		publicPath: '/dist/'
 	}
