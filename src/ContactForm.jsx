@@ -1,9 +1,15 @@
 import React from "react";
-import {Typography} from "@material-ui/core";
+import {Grid, TextField} from "@material-ui/core";
 
 function ContactForm(props) {
 	return (
-		<Typography>Yo {props.contact.name}</Typography>
+		<form>
+			<Grid container direction="column" spacing="32">
+				<Grid item>
+					<TextField label="Name" value={props.contact.name} fullWidth/>
+				</Grid>
+			</Grid>
+		</form>
 	);
 }
 
