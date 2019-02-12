@@ -3,6 +3,7 @@ import {List} from "@material-ui/core";
 import ContactListItem from "./ContactListItem.jsx";
 
 class ContactList extends React.Component {
+	
 	constructor(props) {
 		super(props);
 		this.state = {selectedContact: null};
