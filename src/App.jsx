@@ -1,5 +1,6 @@
 import React from "react";
 import {AppBar, CssBaseline, Drawer, Toolbar, Typography, withStyles} from "@material-ui/core";
+import ContactForm from "./ContactForm.jsx";
 import ContactList from "./ContactList.jsx";
 
 const drawerWidth = 320;
@@ -15,30 +16,43 @@ const styles = theme => ({
 	}
 });
 
-function App(props) {
-	const {classes} = props;
-	
-	function yo(contact) {
-		console.log('yo ' + contact.name);
+class App extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {selectedContact: null};
 	}
 	
-	return (
-		<React.Fragment>
-			<CssBaseline/>
-			<AppBar position="static">
-				<Toolbar>
-					<Typography variant="h6" color="inherit">
-						Contacts
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			<Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
-				<ContactList onSelect={yo}/>
-			</Drawer>
-			<main className={classes.content}>
-			</main>
-		</React.Fragment>
-	);
+	render() {
+		const {classes} = this.props;
+		
+		const content = this.state.selectedContact != null
+			? <ContactForm contact={this.state.selectedContact}/>
+			: null;
+		
+		return (
+			<React.Fragment>
+				<CssBaseline/>
+				<AppBar position="static">
+					<Toolbar>
+						<Typography variant="h6" color="inherit">
+							Contacts
+						</Typography>
+					</Toolbar>
+				</AppBar>
+				<Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
+					<ContactList onSelect={(contact) => this.selectContact(contact)}/>
+				</Drawer>
+				<main className={classes.content}>
+					{content}
+				</main>
+			</React.Fragment>
+		);
+	}
+	
+	selectContact(contact) {
+		this.setState({selectedContact: contact});
+	}
 }
 
 export default withStyles(styles)(App);
