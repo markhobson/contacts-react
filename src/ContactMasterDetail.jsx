@@ -33,7 +33,7 @@ class ContactMasterDetail extends React.Component {
 		return (
 			<React.Fragment>
 				<Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
-					<ContactList onSelect={(contact) => this.selectContact(contact)}/>
+					<ContactList contacts={this.props.contacts} onSelect={(contact) => this.selectContact(contact)}/>
 				</Drawer>
 				<main className={classes.content}>
 					{content}
