@@ -1,8 +1,23 @@
 import React from "react";
-import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, CssBaseline, Drawer, Toolbar, Typography, withStyles} from "@material-ui/core";
 import ContactList from "./ContactList.jsx";
 
-function App() {
+const drawerWidth = 320;
+
+const styles = theme => ({
+	drawerPaper: {
+		top: 'auto',
+		width: drawerWidth
+	},
+	content: {
+		marginLeft: drawerWidth,
+		padding: theme.spacing.unit * 3
+	}
+});
+
+function App(props) {
+	const {classes} = props;
+	
 	function yo(contact) {
 		console.log('yo ' + contact.name);
 	}
@@ -17,11 +32,13 @@ function App() {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<main>
+			<Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
 				<ContactList onSelect={yo}/>
+			</Drawer>
+			<main className={classes.content}>
 			</main>
 		</React.Fragment>
 	);
 }
 
-export default App;
+export default withStyles(styles)(App);
