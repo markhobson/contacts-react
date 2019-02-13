@@ -16,7 +16,7 @@ class ContactForm extends React.Component {
 						<TextField
 							label="Name"
 							value={this.state.contact.name}
-							onChange={(event) => this.handleNameChange(event)}
+							onChange={event => this.handleNameChange(event)}
 							fullWidth
 						/>
 					</Grid>
