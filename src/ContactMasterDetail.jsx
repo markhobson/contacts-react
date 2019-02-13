@@ -27,7 +27,7 @@ class ContactMasterDetail extends React.Component {
 		const {classes} = this.props;
 		
 		const content = this.state.selectedContact != null
-			? <ContactForm contact={this.state.selectedContact}/>
+			? <ContactForm key={this.state.selectedContact.id} contact={this.state.selectedContact}/>
 			: null;
 		
 		return (
