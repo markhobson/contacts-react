@@ -26,17 +26,15 @@ class ContactMasterDetail extends React.Component {
 	render() {
 		const {classes} = this.props;
 		
-		const content = this.state.selectedContact != null
-			? <ContactForm key={this.state.selectedContact.id} contact={this.state.selectedContact}/>
-			: null;
-		
 		return (
 			<React.Fragment>
 				<Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
 					<ContactList contacts={this.props.contacts} onSelect={(contact) => this.selectContact(contact)}/>
 				</Drawer>
 				<main className={classes.content}>
-					{content}
+					{this.state.selectedContact &&
+						<ContactForm key={this.state.selectedContact.id} contact={this.state.selectedContact}/>
+					}
 				</main>
 			</React.Fragment>
 		);
