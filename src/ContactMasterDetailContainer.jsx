@@ -7,9 +7,9 @@ class ContactMasterDetailContainer extends React.Component {
 		super(props);
 		this.state = {
 			contacts: [
-				{id: 1, name: 'Chip Smith', avatar: 'https://www.gravatar.com/avatar/ed8fc01d29a00912ba41555210cd697e'},
-				{id: 2, name: 'Randy Horn', avatar: 'https://www.gravatar.com/avatar/ed8fc01d29a00912ba41555210cd697e'},
-				{id: 3, name: 'Zane High', avatar: 'https://www.gravatar.com/avatar/ed8fc01d29a00912ba41555210cd697e'}
+				{id: 1, name: 'Chip Smith', avatar: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Chip_Smith_GPG.png'},
+				{id: 2, name: 'Randy Horn', avatar: 'https://www.sacredheartwdm.org/pictures/2016/1/HORN-RANDY-739.jpg'},
+				{id: 3, name: 'Zane High', avatar: 'https://www.trainmag.com/wp-content/uploads/2017/05/wsi-imageoptim-Frank-Zane.jpg'}
 			]
 		};
 	}
