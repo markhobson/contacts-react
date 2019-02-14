@@ -69,12 +69,12 @@ class ContactMasterDetail extends React.Component {
 	
 	saveContact(contact) {
 		this.props.onSave(contact);
-		this.setState({snackbar: {open: true, message: 'Contact saved'}});
+		this.setState({snackbar: {open: true, message: `${contact.name} saved`}});
 	}
 	
 	deleteContact(contact) {
 		this.props.onDelete(contact);
-		this.setState({snackbar: {open: true, message: 'Contact deleted'}});
+		this.setState({snackbar: {open: true, message: `${contact.name} deleted`}});
 	}
 	
 	handleSnackbarClose(event) {
