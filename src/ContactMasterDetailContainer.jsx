@@ -16,8 +16,15 @@ class ContactMasterDetailContainer extends React.Component {
 	
 	render() {
 		return (
-			<ContactMasterDetail contacts={this.state.contacts}/>
+			<ContactMasterDetail contacts={this.state.contacts} onSave={contact => this.saveContact(contact)}/>
 		);
+	}
+	
+	saveContact(contact) {
+		this.setState(state => ({
+			contacts: state.contacts
+				.map(nextContact => nextContact.id === contact.id ? contact : nextContact)
+		}));
 	}
 }
 

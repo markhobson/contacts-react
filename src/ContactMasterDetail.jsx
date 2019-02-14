@@ -33,7 +33,11 @@ class ContactMasterDetail extends React.Component {
 				</Drawer>
 				<main className={classes.content}>
 					{this.state.selectedContact &&
-						<ContactForm key={this.state.selectedContact.id} contact={this.state.selectedContact}/>
+						<ContactForm
+							key={this.state.selectedContact.id}
+							contact={this.state.selectedContact}
+							onSave={contact => this.props.onSave(contact)}
+						/>
 					}
 				</main>
 			</React.Fragment>

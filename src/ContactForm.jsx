@@ -1,5 +1,5 @@
 import React from "react";
-import {Grid, TextField} from "@material-ui/core";
+import {Button, Grid, TextField} from "@material-ui/core";
 
 class ContactForm extends React.Component {
 	
@@ -10,9 +10,10 @@ class ContactForm extends React.Component {
 	
 	render() {
 		return (
-			<form>
-				<Grid container direction="column" spacing="32">
-					<Grid item>
+			<form onSubmit={(event) => this.handleSubmit(event)}>
+				<Grid container direction="column" alignItems="flex-end" spacing={32}>
+					{/* TODO: Surely there's a better way to make a grid item full width */}
+					<Grid item style={{width: '100%'}}>
 						<TextField
 							label="Name"
 							value={this.state.contact.name}
@@ -20,13 +21,22 @@ class ContactForm extends React.Component {
 							fullWidth
 						/>
 					</Grid>
+					<Grid item>
+						<Button type="submit" variant="contained" color="primary">Save</Button>
+					</Grid>
 				</Grid>
 			</form>
 		);
 	}
 	
 	handleNameChange(event) {
-		this.setState({contact: {name: event.target.value}});
+		let newName = event.target.value;
+		this.setState(state => ({contact: {...state.contact, name: newName}}));
+	}
+	
+	handleSubmit(event) {
+		this.props.onSave(this.state.contact);
+		event.preventDefault();
 	}
 }
 
