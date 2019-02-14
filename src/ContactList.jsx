@@ -12,6 +12,7 @@ class ContactList extends React.Component {
 	render() {
 		const listItems = this.props.contacts.map(contact =>
 			<ContactListItem
+				key={contact.id}
 				contact={contact}
 				selected={this.isSelected(contact)}
 				onSelect={() => this.onSelect(contact)}
