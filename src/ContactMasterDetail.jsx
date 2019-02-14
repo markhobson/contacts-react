@@ -1,5 +1,6 @@
 import React from "react";
-import {Drawer, withStyles} from "@material-ui/core";
+import {Drawer, IconButton, Snackbar, withStyles} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
 
@@ -20,7 +21,13 @@ class ContactMasterDetail extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = {selectedContact: null};
+		this.state = {
+			selectedContact: null,
+			snackbar: {
+				open: false,
+				message: ''
+			}
+		};
 	}
 	
 	render() {
@@ -36,16 +43,36 @@ class ContactMasterDetail extends React.Component {
 						<ContactForm
 							key={this.state.selectedContact.id}
 							contact={this.state.selectedContact}
-							onSave={contact => this.props.onSave(contact)}
+							onSave={contact => this.saveContact(contact)}
 						/>
 					}
 				</main>
+				<Snackbar
+					open={this.state.snackbar.open}
+					message={this.state.snackbar.message}
+					action={
+						<IconButton color="inherit" onClick={event => this.handleSnackbarClose(event)}>
+							<CloseIcon/>
+						</IconButton>
+					}
+					autoHideDuration={3000}
+					onClose={event => this.handleSnackbarClose(event)}
+				/>
 			</React.Fragment>
 		);
 	}
 	
 	selectContact(contact) {
 		this.setState({selectedContact: contact});
+	}
+	
+	saveContact(contact) {
+		this.props.onSave(contact);
+		this.setState({snackbar: {open: true, message: 'Contact saved'}});
+	}
+	
+	handleSnackbarClose(event) {
+		this.setState(state => ({snackbar: {...state.snackbar, open: false}}));
 	}
 }
 
