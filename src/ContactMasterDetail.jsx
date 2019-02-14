@@ -44,6 +44,7 @@ class ContactMasterDetail extends React.Component {
 							key={this.state.selectedContact.id}
 							contact={this.state.selectedContact}
 							onSave={contact => this.saveContact(contact)}
+							onDelete={contact => this.deleteContact(contact)}
 						/>
 					}
 				</main>
@@ -69,6 +70,11 @@ class ContactMasterDetail extends React.Component {
 	saveContact(contact) {
 		this.props.onSave(contact);
 		this.setState({snackbar: {open: true, message: 'Contact saved'}});
+	}
+	
+	deleteContact(contact) {
+		this.props.onDelete(contact);
+		this.setState({snackbar: {open: true, message: 'Contact deleted'}});
 	}
 	
 	handleSnackbarClose(event) {

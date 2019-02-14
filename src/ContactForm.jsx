@@ -11,9 +11,8 @@ class ContactForm extends React.Component {
 	render() {
 		return (
 			<form onSubmit={(event) => this.handleSubmit(event)}>
-				<Grid container direction="column" alignItems="flex-end" spacing={32}>
-					{/* TODO: Surely there's a better way to make a grid item full width */}
-					<Grid item style={{width: '100%'}}>
+				<Grid container direction="column" spacing={32}>
+					<Grid item>
 						<TextField
 							label="Name"
 							value={this.state.contact.name}
@@ -21,8 +20,13 @@ class ContactForm extends React.Component {
 							fullWidth
 						/>
 					</Grid>
-					<Grid item>
-						<Button type="submit" variant="contained" color="primary">Save</Button>
+					<Grid item container justify="flex-end" spacing={16}>
+						<Grid item>
+							<Button onClick={event => this.handleDelete(event)}>Delete</Button>
+						</Grid>
+						<Grid item>
+							<Button type="submit" variant="contained" color="primary">Save</Button>
+						</Grid>
 					</Grid>
 				</Grid>
 			</form>
@@ -37,6 +41,10 @@ class ContactForm extends React.Component {
 	handleSubmit(event) {
 		this.props.onSave(this.state.contact);
 		event.preventDefault();
+	}
+	
+	handleDelete(event) {
+		this.props.onDelete(this.state.contact);
 	}
 }
 

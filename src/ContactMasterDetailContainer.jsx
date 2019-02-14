@@ -16,7 +16,11 @@ class ContactMasterDetailContainer extends React.Component {
 	
 	render() {
 		return (
-			<ContactMasterDetail contacts={this.state.contacts} onSave={contact => this.saveContact(contact)}/>
+			<ContactMasterDetail
+				contacts={this.state.contacts}
+				onSave={contact => this.saveContact(contact)}
+				onDelete={contact => this.deleteContact(contact)}
+			/>
 		);
 	}
 	
@@ -24,6 +28,13 @@ class ContactMasterDetailContainer extends React.Component {
 		this.setState(state => ({
 			contacts: state.contacts
 				.map(nextContact => nextContact.id === contact.id ? contact : nextContact)
+		}));
+	}
+	
+	deleteContact(contact) {
+		this.setState(state => ({
+			contacts: state.contacts
+				.filter(nextContact => nextContact.id !== contact.id)
 		}));
 	}
 }
