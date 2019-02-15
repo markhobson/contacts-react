@@ -1,7 +1,9 @@
 import React from "react";
 import {Drawer, withStyles} from "@material-ui/core";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
+import FixedPositionFab from "./FixedPositionFab";
 import SimpleSnackbar from "./SimpleSnackbar";
 
 const drawerWidth = 320;
@@ -47,6 +49,9 @@ class ContactManager extends React.Component {
 							onDelete={contact => this.deleteContact(contact)}
 						/>
 					}
+					<FixedPositionFab color="secondary" onClick={event => this.handleAdd(event)}>
+						<PersonAddIcon/>
+					</FixedPositionFab>
 				</main>
 				<SimpleSnackbar
 					open={this.state.snackbar.open}
@@ -78,6 +83,10 @@ class ContactManager extends React.Component {
 	
 	handleSnackbarClose(event) {
 		this.setState(state => ({snackbar: {...state.snackbar, open: false}}));
+	}
+	
+	handleAdd(event) {
+		this.props.onAdd({});
 	}
 }
 
