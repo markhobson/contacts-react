@@ -1,6 +1,6 @@
 import React from "react";
 import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
-import ContactMasterDetailContainer from "./ContactMasterDetailContainer";
+import ContactManagerContainer from "./ContactManagerContainer";
 
 function App() {
 	return (
@@ -13,7 +13,7 @@ function App() {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<ContactMasterDetailContainer/>
+			<ContactManagerContainer/>
 		</React.Fragment>
 	);
 }

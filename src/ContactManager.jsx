@@ -17,7 +17,7 @@ const styles = theme => ({
 	}
 });
 
-class ContactMasterDetail extends React.Component {
+class ContactManager extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -81,4 +81,4 @@ class ContactMasterDetail extends React.Component {
 	}
 }
 
-export default withStyles(styles)(ContactMasterDetail);
+export default withStyles(styles)(ContactManager);

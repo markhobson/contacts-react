@@ -1,7 +1,7 @@
 import React from "react";
-import ContactMasterDetail from "./ContactMasterDetail";
+import ContactMasterDetail from "./ContactManager";
 
-class ContactMasterDetailContainer extends React.Component {
+class ContactManagerContainer extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -39,4 +39,4 @@ class ContactMasterDetailContainer extends React.Component {
 	}
 }
 
-export default ContactMasterDetailContainer;
+export default ContactManagerContainer;
