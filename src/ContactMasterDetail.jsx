@@ -1,8 +1,8 @@
 import React from "react";
-import {Drawer, IconButton, Snackbar, withStyles} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import {Drawer, withStyles} from "@material-ui/core";
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
+import SimpleSnackbar from "./SimpleSnackbar";
 
 const drawerWidth = 320;
 
@@ -48,15 +48,9 @@ class ContactMasterDetail extends React.Component {
 						/>
 					}
 				</main>
-				<Snackbar
+				<SimpleSnackbar
 					open={this.state.snackbar.open}
 					message={this.state.snackbar.message}
-					action={
-						<IconButton color="inherit" onClick={event => this.handleSnackbarClose(event)}>
-							<CloseIcon/>
-						</IconButton>
-					}
-					autoHideDuration={3000}
 					onClose={event => this.handleSnackbarClose(event)}
 				/>
 			</React.Fragment>
