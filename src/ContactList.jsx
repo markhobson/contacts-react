@@ -25,7 +25,7 @@ class ContactList extends React.Component {
 	}
 	
 	isSelected(contact) {
-		return contact.name === (this.state.selectedContact && this.state.selectedContact.name);
+		return contact.id === (this.state.selectedContact && this.state.selectedContact.id);
 	}
 	
 	onSelect(contact) {
