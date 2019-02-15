@@ -1,5 +1,6 @@
 import React from "react";
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField} from "@material-ui/core";
+import {Button, Grid, TextField} from "@material-ui/core";
+import ConfirmationDialog from "./ConfirmationDialog";
 
 class ContactForm extends React.Component {
 	
@@ -8,9 +9,7 @@ class ContactForm extends React.Component {
 		this.state = {
 			contact: Object.assign({}, props.contact),
 			dialog: {
-				open: false,
-				title: '',
-				content: ''
+				open: false
 			}
 		};
 	}
@@ -29,25 +28,15 @@ class ContactForm extends React.Component {
 					</Grid>
 					<Grid item container justify="flex-end" spacing={16}>
 						<Grid item>
-							<Button onClick={event => this.handleDialogOpen(event)}>Delete</Button>
-							<Dialog
-								fullWidth={true}
+							<Button onClick={event => this.handleDelete(event)}>Delete</Button>
+							<ConfirmationDialog
 								open={this.state.dialog.open}
-								onClose={event => this.handleDialogClose(event)}
-							>
-								<DialogTitle>{this.state.dialog.title}</DialogTitle>
-								<DialogContent>
-									<DialogContentText>{this.state.dialog.content}</DialogContentText>
-								</DialogContent>
-								<DialogActions>
-									<Button color="primary" onClick={event => this.handleDialogClose(event)}>
-										Cancel
-									</Button>
-									<Button color="primary" onClick={event => this.handleDialogConfirm(event)}>
-										Delete
-									</Button>
-								</DialogActions>
-							</Dialog>
+								title="Delete contact"
+								content="Are you sure?"
+								confirm="Delete"
+								onConfirm={event => this.handleDeleteConfirm(event)}
+								onCancel={event => this.handleDeleteCancel(event)}
+							/>
 						</Grid>
 						<Grid item>
 							<Button type="submit" variant="contained" color="primary">Save</Button>
@@ -68,17 +57,17 @@ class ContactForm extends React.Component {
 		event.preventDefault();
 	}
 	
-	handleDialogOpen(event) {
-		this.setState({dialog: {open: true, title: 'Delete contact', content: 'Are you sure?'}});
+	handleDelete(event) {
+		this.setState({dialog: {open: true}});
 	}
 	
-	handleDialogConfirm(event) {
-		this.handleDialogClose(event);
+	handleDeleteConfirm(event) {
+		this.setState({dialog: {open: false}});
 		this.props.onDelete(this.state.contact);
 	}
 	
-	handleDialogClose(event) {
-		this.setState(state => ({dialog: {...state.dialog, open: false}}));
+	handleDeleteCancel(event) {
+		this.setState({dialog: {open: false}});
 	}
 }
 
