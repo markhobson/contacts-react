@@ -1,11 +1,18 @@
 import React from "react";
-import {Button, Grid, TextField} from "@material-ui/core";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField} from "@material-ui/core";
 
 class ContactForm extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = {contact: Object.assign({}, props.contact)};
+		this.state = {
+			contact: Object.assign({}, props.contact),
+			dialog: {
+				open: false,
+				title: '',
+				content: ''
+			}
+		};
 	}
 	
 	render() {
@@ -22,7 +29,25 @@ class ContactForm extends React.Component {
 					</Grid>
 					<Grid item container justify="flex-end" spacing={16}>
 						<Grid item>
-							<Button onClick={event => this.handleDelete(event)}>Delete</Button>
+							<Button onClick={event => this.handleDialogOpen(event)}>Delete</Button>
+							<Dialog
+								fullWidth={true}
+								open={this.state.dialog.open}
+								onClose={event => this.handleDialogClose(event)}
+							>
+								<DialogTitle>{this.state.dialog.title}</DialogTitle>
+								<DialogContent>
+									<DialogContentText>{this.state.dialog.content}</DialogContentText>
+								</DialogContent>
+								<DialogActions>
+									<Button color="primary" onClick={event => this.handleDialogClose(event)}>
+										Cancel
+									</Button>
+									<Button color="primary" onClick={event => this.handleDialogConfirm(event)}>
+										Delete
+									</Button>
+								</DialogActions>
+							</Dialog>
 						</Grid>
 						<Grid item>
 							<Button type="submit" variant="contained" color="primary">Save</Button>
@@ -43,8 +68,17 @@ class ContactForm extends React.Component {
 		event.preventDefault();
 	}
 	
-	handleDelete(event) {
+	handleDialogOpen(event) {
+		this.setState({dialog: {open: true, title: 'Delete contact', content: 'Are you sure?'}});
+	}
+	
+	handleDialogConfirm(event) {
+		this.handleDialogClose(event);
 		this.props.onDelete(this.state.contact);
+	}
+	
+	handleDialogClose(event) {
+		this.setState(state => ({dialog: {...state.dialog, open: false}}));
 	}
 }
 
