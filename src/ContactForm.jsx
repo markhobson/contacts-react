@@ -31,7 +31,7 @@ class ContactForm extends React.Component {
 							<Button onClick={event => this.handleDelete(event)}>Delete</Button>
 							<ConfirmationDialog
 								open={this.state.dialog.open}
-								title="Delete contact"
+								title={`Delete ${this.state.contact.name}`}
 								content="Are you sure?"
 								confirm="Delete"
 								onConfirm={event => this.handleDeleteConfirm(event)}
