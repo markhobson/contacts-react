@@ -86,7 +86,7 @@ class ContactManager extends React.Component {
 	}
 	
 	handleAdd(event) {
-		this.props.onAdd({});
+		this.props.onAdd({name: ''});
 	}
 }
 
