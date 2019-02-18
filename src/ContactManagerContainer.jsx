@@ -1,5 +1,5 @@
 import React from "react";
-import ContactMasterDetail from "./ContactManager";
+import ContactManager from "./ContactManager";
 
 class ContactManagerContainer extends React.Component {
 	
@@ -18,7 +18,7 @@ class ContactManagerContainer extends React.Component {
 	
 	render() {
 		return (
-			<ContactMasterDetail
+			<ContactManager
 				contacts={this.state.contacts}
 				onSave={contact => this.saveContact(contact)}
 				onDelete={contact => this.deleteContact(contact)}
