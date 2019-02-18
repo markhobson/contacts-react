@@ -3,6 +3,8 @@ import {Avatar, ListItem, ListItemAvatar, ListItemText} from "@material-ui/core"
 import PersonIcon from '@material-ui/icons/Person';
 
 function ContactListItem(props) {
+	const toName = contact => contact.name || 'Unnamed';
+	
 	return (
 		<ListItem button selected={props.selected} onClick={() => props.onSelect(props.contact)}>
 			<ListItemAvatar>
@@ -11,7 +13,7 @@ function ContactListItem(props) {
 					: <Avatar><PersonIcon/></Avatar>
 				}
 			</ListItemAvatar>
-			<ListItemText primary={props.contact.name || 'Unnamed'}/>
+			<ListItemText primary={toName(props.contact)}/>
 		</ListItem>
 	);
 }

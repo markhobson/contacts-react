@@ -76,13 +76,13 @@ class ContactManager extends React.Component {
 	
 	saveContact(contact) {
 		this.props.onSave(contact);
-		this.setState({snackbar: {open: true, message: `${contact.name} saved`}});
+		this.setState({snackbar: {open: true, message: `${this.toName(contact)} saved`}});
 	}
 	
 	deleteContact(contact) {
 		this.props.onDelete(contact);
 		this.unselectContact();
-		this.setState({snackbar: {open: true, message: `${contact.name} deleted`}});
+		this.setState({snackbar: {open: true, message: `${this.toName(contact)} deleted`}});
 	}
 	
 	handleSnackbarClose(event) {
@@ -92,6 +92,10 @@ class ContactManager extends React.Component {
 	handleAdd(event) {
 		this.props.onAdd({name: ''});
 		this.setState({snackbar: {open: true, message: `New contact added`}});
+	}
+	
+	toName(contact) {
+		return contact.name || 'Unnamed';
 	}
 }
 
