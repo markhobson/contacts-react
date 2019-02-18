@@ -25,10 +25,12 @@ class ContactForm extends React.Component {
 							value={this.state.contact.name}
 							onChange={event => this.handleChange(event)}
 							fullWidth
+							required
 						/>
 					</Grid>
 					<Grid item>
 						<TextField
+							type="email"
 							label="Email"
 							name="email"
 							value={this.state.contact.email}
