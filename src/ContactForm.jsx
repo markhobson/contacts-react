@@ -21,16 +21,18 @@ class ContactForm extends React.Component {
 					<Grid item>
 						<TextField
 							label="Name"
+							name="name"
 							value={this.state.contact.name}
-							onChange={event => this.handleNameChange(event)}
+							onChange={event => this.handleChange(event)}
 							fullWidth
 						/>
 					</Grid>
 					<Grid item>
 						<TextField
 							label="Email"
+							name="email"
 							value={this.state.contact.email}
-							onChange={event => this.handleEmailChange(event)}
+							onChange={event => this.handleChange(event)}
 							fullWidth
 						/>
 					</Grid>
@@ -55,14 +57,10 @@ class ContactForm extends React.Component {
 		);
 	}
 	
-	handleNameChange(event) {
-		let newName = event.target.value;
-		this.setState(state => ({contact: {...state.contact, name: newName}}));
-	}
-	
-	handleEmailChange(event) {
-		let newEmail = event.target.value;
-		this.setState(state => ({contact: {...state.contact, email: newEmail}}));
+	handleChange(event) {
+		const name = event.target.name;
+		const newValue = event.target.value;
+		this.setState(state => ({contact: {...state.contact, [name]: newValue}}));
 	}
 	
 	handleSubmit(event) {
