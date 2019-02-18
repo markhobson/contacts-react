@@ -8,6 +8,10 @@ class ContactForm extends React.Component {
 		super(props);
 		this.state = {
 			contact: Object.assign({}, props.contact),
+			validation: {
+				name: '',
+				email: ''
+			},
 			dialog: {
 				open: false
 			}
@@ -24,6 +28,8 @@ class ContactForm extends React.Component {
 							name="name"
 							value={this.state.contact.name}
 							onChange={event => this.handleChange(event)}
+							helperText={this.state.validation.name}
+							error={this.state.validation.name.length > 0}
 							fullWidth
 							required
 						/>
@@ -35,6 +41,8 @@ class ContactForm extends React.Component {
 							name="email"
 							value={this.state.contact.email}
 							onChange={event => this.handleChange(event)}
+							helperText={this.state.validation.email}
+							error={this.state.validation.email.length > 0}
 							fullWidth
 						/>
 					</Grid>
@@ -51,7 +59,9 @@ class ContactForm extends React.Component {
 							/>
 						</Grid>
 						<Grid item>
-							<Button type="submit" variant="contained" color="primary">Save</Button>
+							<Button type="submit" variant="contained" color="primary" disabled={!this.isValid()}>
+								Save
+							</Button>
 						</Grid>
 					</Grid>
 				</Grid>
@@ -62,7 +72,24 @@ class ContactForm extends React.Component {
 	handleChange(event) {
 		const name = event.target.name;
 		const newValue = event.target.value;
-		this.setState(state => ({contact: {...state.contact, [name]: newValue}}));
+		this.setState(
+			state => ({contact: {...state.contact, [name]: newValue}}),
+			() => this.validate()
+		);
+	}
+	
+	validate() {
+		this.setState(state => ({
+			validation: {
+				name: state.contact.name ? '' : 'Everyone needs a name.',
+				email: state.contact.email.indexOf('@') !== -1 ? '' : `This doesn't look like an email address.`
+			}
+		}));
+	}
+	
+	isValid() {
+		return this.state.validation.name.length === 0
+			&& this.state.validation.email.length === 0;
 	}
 	
 	handleSubmit(event) {
