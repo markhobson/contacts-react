@@ -26,6 +26,14 @@ class ContactForm extends React.Component {
 							fullWidth
 						/>
 					</Grid>
+					<Grid item>
+						<TextField
+							label="Email"
+							value={this.state.contact.email}
+							onChange={event => this.handleEmailChange(event)}
+							fullWidth
+						/>
+					</Grid>
 					<Grid item container justify="flex-end" spacing={16}>
 						<Grid item>
 							<Button onClick={event => this.handleDelete(event)}>Delete</Button>
@@ -50,6 +58,11 @@ class ContactForm extends React.Component {
 	handleNameChange(event) {
 		let newName = event.target.value;
 		this.setState(state => ({contact: {...state.contact, name: newName}}));
+	}
+	
+	handleEmailChange(event) {
+		let newEmail = event.target.value;
+		this.setState(state => ({contact: {...state.contact, email: newEmail}}));
 	}
 	
 	handleSubmit(event) {
