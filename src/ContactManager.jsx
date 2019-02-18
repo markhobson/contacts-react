@@ -87,6 +87,7 @@ class ContactManager extends React.Component {
 	
 	handleAdd(event) {
 		this.props.onAdd({name: ''});
+		this.setState({snackbar: {open: true, message: `New contact added`}});
 	}
 }
 
