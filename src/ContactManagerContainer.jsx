@@ -22,7 +22,7 @@ class ContactManagerContainer extends React.Component {
 				contacts={this.state.contacts}
 				onSave={contact => this.saveContact(contact)}
 				onDelete={contact => this.deleteContact(contact)}
-				onAdd={contact => this.addContact(contact)}
+				onAdd={(contact, callback) => this.addContact(contact, callback)}
 			/>
 		);
 	}
@@ -41,12 +41,15 @@ class ContactManagerContainer extends React.Component {
 		}));
 	}
 	
-	addContact(contact) {
-		this.setState(state => ({
-			contacts: state.contacts
-				.concat({...contact, id: state.nextId}),
-			nextId: state.nextId + 1
-		}));
+	addContact(contact, callback) {
+		this.setState(
+			state => ({
+				contacts: state.contacts
+					.concat({...contact, id: state.nextId}),
+				nextId: state.nextId + 1
+			}),
+			() => callback(this.state.contacts.slice(-1)[0])
+		);
 	}
 }
 
