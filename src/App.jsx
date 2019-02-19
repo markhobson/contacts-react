@@ -1,18 +1,11 @@
 import React from "react";
-import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
+import Navigation from "./Navigation";
 import ContactManagerContainer from "./ContactManagerContainer";
 
 function App() {
 	return (
 		<React.Fragment>
-			<CssBaseline/>
-			<AppBar position="static">
-				<Toolbar>
-					<Typography variant="h6" color="inherit">
-						Contacts
-					</Typography>
-				</Toolbar>
-			</AppBar>
+			<Navigation/>
 			<ContactManagerContainer/>
 		</React.Fragment>
 	);
