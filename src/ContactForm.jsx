@@ -15,7 +15,7 @@ class ContactForm extends React.Component {
 	}
 	
 	render() {
-		const {values, errors, handleChange, isValid, handleSubmit} = this.props;
+		const {values, touched, errors, handleChange, handleBlur, isValid, handleSubmit} = this.props;
 		
 		return (
 			<form onSubmit={handleSubmit}>
@@ -26,8 +26,9 @@ class ContactForm extends React.Component {
 							name="name"
 							value={values.name}
 							onChange={handleChange}
-							helperText={errors.name || null}
-							error={errors.name && errors.name.length > 0}
+							onBlur={handleBlur}
+							helperText={touched.name && errors.name}
+							error={touched.name && !!errors.name}
 							fullWidth
 							required
 						/>
@@ -39,8 +40,9 @@ class ContactForm extends React.Component {
 							name="email"
 							value={values.email}
 							onChange={handleChange}
-							helperText={errors.email || null}
-							error={errors.email && errors.email.length > 0}
+							onBlur={handleBlur}
+							helperText={touched.email && errors.email}
+							error={touched.email && !!errors.email}
 							fullWidth
 						/>
 					</Grid>
