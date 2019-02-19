@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Grid, TextField} from "@material-ui/core";
 import {withFormik} from "formik";
+import * as Yup from "yup";
 import ConfirmationDialog from "./ConfirmationDialog";
 
 class ContactForm extends React.Component {
@@ -96,19 +97,10 @@ const FormikContactForm = withFormik({
 	
 	isInitialValid: () => true,
 	
-	validate: (values) => {
-		const errors = {};
-		
-		if (values.name.length === 0) {
-			errors.name = 'Everyone needs a name.';
-		}
-		
-		if (values.email.indexOf('@') === -1) {
-			errors.email = `This doesn't look like an email address.`;
-		}
-		
-		return errors;
-	},
+	validationSchema: () => Yup.object().shape({
+		name: Yup.string().required('Everyone needs a name.'),
+		email: Yup.string().email(`This doesn't look like an email address.`)
+	}),
 
 	handleSubmit: (values, formikBag) => {
 		const {props} = formikBag;
