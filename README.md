@@ -2,6 +2,12 @@
 
 Learning React by building a simple contacts UI.
 
+* [React](https://reactjs.org/)
+* [Material UI](https://material-ui.com/) for components
+* [Formik](https://jaredpalmer.com/formik) for forms
+* [Yup](https://github.com/jquense/yup) for form validation
+* [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/) for building
+
 ## Getting started
 
 To run the application:
