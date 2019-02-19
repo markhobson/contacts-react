@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Grid, TextField} from "@material-ui/core";
+import {Formik} from "formik";
 import ConfirmationDialog from "./ConfirmationDialog";
 
 class ContactForm extends React.Component {
@@ -7,11 +8,6 @@ class ContactForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			contact: Object.assign({}, props.contact),
-			validation: {
-				name: '',
-				email: ''
-			},
 			dialog: {
 				open: false
 			}
@@ -20,81 +16,93 @@ class ContactForm extends React.Component {
 	
 	render() {
 		return (
-			<form onSubmit={(event) => this.handleSubmit(event)}>
-				<Grid container direction="column" spacing={32}>
-					<Grid item>
-						<TextField
-							label="Name"
-							name="name"
-							value={this.state.contact.name}
-							onChange={event => this.handleChange(event)}
-							helperText={this.state.validation.name}
-							error={this.state.validation.name.length > 0}
-							fullWidth
-							required
-						/>
-					</Grid>
-					<Grid item>
-						<TextField
-							type="email"
-							label="Email"
-							name="email"
-							value={this.state.contact.email}
-							onChange={event => this.handleChange(event)}
-							helperText={this.state.validation.email}
-							error={this.state.validation.email.length > 0}
-							fullWidth
-						/>
-					</Grid>
-					<Grid item container justify="flex-end" spacing={16}>
-						<Grid item>
-							<Button onClick={event => this.handleDelete(event)}>Delete</Button>
-							<ConfirmationDialog
-								open={this.state.dialog.open}
-								title={`Delete ${this.toName(this.state.contact)}`}
-								content="Are you sure?"
-								confirm="Delete"
-								onConfirm={event => this.handleDeleteConfirm(event)}
-								onCancel={event => this.handleDeleteCancel(event)}
-							/>
+			<Formik
+				initialValues={this.initialValues()}
+				isInitialValid={true}
+				validate={values => this.validate(values)}
+				onSubmit={values => this.handleSubmit(values)}
+			>
+				{({values, errors, handleChange, isValid, handleSubmit}) => (
+					<form onSubmit={handleSubmit}>
+						<Grid container direction="column" spacing={32}>
+							<Grid item>
+								<TextField
+									label="Name"
+									name="name"
+									value={values.name}
+									onChange={handleChange}
+									helperText={errors.name || ''}
+									error={errors.name && errors.name.length > 0}
+									fullWidth
+									required
+								/>
+							</Grid>
+							<Grid item>
+								<TextField
+									type="email"
+									label="Email"
+									name="email"
+									value={values.email}
+									onChange={handleChange}
+									helperText={errors.email || ''}
+									error={errors.email && errors.email.length > 0}
+									fullWidth
+								/>
+							</Grid>
+							<Grid item container justify="flex-end" spacing={16}>
+								<Grid item>
+									<Button onClick={event => this.handleDelete(event)}>Delete</Button>
+									<ConfirmationDialog
+										open={this.state.dialog.open}
+										title={`Delete ${this.toName(this.props.contact)}`}
+										content="Are you sure?"
+										confirm="Delete"
+										onConfirm={event => this.handleDeleteConfirm(event)}
+										onCancel={event => this.handleDeleteCancel(event)}
+									/>
+								</Grid>
+								<Grid item>
+									<Button type="submit" variant="contained" color="primary" disabled={!isValid}>
+										Save
+									</Button>
+								</Grid>
+							</Grid>
 						</Grid>
-						<Grid item>
-							<Button type="submit" variant="contained" color="primary" disabled={!this.isValid()}>
-								Save
-							</Button>
-						</Grid>
-					</Grid>
-				</Grid>
-			</form>
+					</form>
+				)}
+			</Formik>
 		);
 	}
 	
-	handleChange(event) {
-		const name = event.target.name;
-		const newValue = event.target.value;
-		this.setState(
-			state => ({contact: {...state.contact, [name]: newValue}}),
-			() => this.validate()
-		);
+	initialValues() {
+		return {
+			name: this.props.contact.name,
+			email: this.props.contact.email
+		};
 	}
 	
-	validate() {
-		this.setState(state => ({
-			validation: {
-				name: state.contact.name ? '' : 'Everyone needs a name.',
-				email: state.contact.email.indexOf('@') !== -1 ? '' : `This doesn't look like an email address.`
-			}
-		}));
+	validate(values) {
+		const errors = {};
+
+		if (values.name.length === 0) {
+			errors.name = 'Everyone needs a name.';
+		}
+		
+		if (values.email.indexOf('@') === -1) {
+			errors.email = `This doesn't look like an email address.`;
+		}
+		
+		return errors;
 	}
 	
-	isValid() {
-		return this.state.validation.name.length === 0
-			&& this.state.validation.email.length === 0;
-	}
-	
-	handleSubmit(event) {
-		this.props.onSave(this.state.contact);
-		event.preventDefault();
+	handleSubmit(values) {
+		const contact = {
+			id: this.props.contact.id,
+			name: values.name,
+			email: values.email,
+			avatar: this.props.contact.avatar
+		};
+		this.props.onSave(contact);
 	}
 	
 	handleDelete(event) {
@@ -103,7 +111,7 @@ class ContactForm extends React.Component {
 	
 	handleDeleteConfirm(event) {
 		this.setState({dialog: {open: false}});
-		this.props.onDelete(this.state.contact);
+		this.props.onDelete(this.props.contact);
 	}
 	
 	handleDeleteCancel(event) {
