@@ -91,7 +91,8 @@ class ContactManager extends React.Component {
 	
 	handleAdd(event) {
 		const newContact = {name: '', email: ''};
-		this.props.onAdd(newContact, contact => this.selectContact(contact));
+		const persistedNewContact = this.props.onAdd(newContact);
+		this.selectContact(persistedNewContact);
 		this.setState({snackbar: {open: true, message: `New contact added`}});
 	}
 	
